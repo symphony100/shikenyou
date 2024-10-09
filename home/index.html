@@ -29,20 +29,72 @@ overflow: auto;
 <body>
 
 <style>
-a.btn--orange {
-  color: #fff;
-  background-color: #eb6100;
-  border-bottom: 5px solid #b84c00;
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
 }
-a.btn--orange:hover {
-  margin-top: 3px;
-  color: #fff;
-  background: #f56500;
-  border-bottom: 2px solid #b84c00;
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
 }
-a.btn--shadow {
-  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+a.btn-flat {
+  overflow: hidden;
+  padding: 1.5rem 6rem;
+  color: #fff;
+  border-radius: 0;
+  background: #000;
+}
+
+a.btn-flat span {
+  position: relative;
+}
+
+a.btn-flat:before {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  width: 150%;
+  height: 500%;
+  content: '';
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-70%) rotate(135deg);
+  transform: translateX(-98%) translateY(-70%) rotate(135deg);
+  background: #fff100;
+}
+
+a.btn-flat:hover:before {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(135deg);
+  transform: translateX(-9%) translateY(-25%) rotate(135deg);
 }
 </style>
 
@@ -122,21 +174,14 @@ function getNow() {
 　　<li><a href="#3">詐欺サイト体験ページ</a></li>
 <h3><a name="3">今日の曜日を選択してください。（通常授業の時間割です。）</a></h3>
 <br>
-	<a href="https://okamotoeita.github.io/shikenyou/getsuyobi/" class="btn btn--orange btn--cubic btn--shadow">月曜日</a>
-	<a href="https://okamotoeita.github.io/shikenyou/kayobi/" class="btn btn--orange btn--cubic btn--shadow">火曜日</a>
-	<a href="https://okamotoeita.github.io/shikenyou/suiyobi/" class="btn btn--orange btn--cubic btn--shadow">水曜日</a>
-	<a href="https://okamotoeita.github.io/shikenyou/mokuyobi/" class="btn btn--orange btn--cubic btn--shadow">木曜日</a>
-	<a href="https://okamotoeita.github.io/shikenyou/kinyobi/" class="btn btn--orange btn--cubic btn--shadow">金曜日</a>
-	<a href="https://okamotoeita.github.io/shikenyou/doyobi/" class="btn btn--orange btn--cubic btn--shadow">土曜日</a>
-	<a href="https://okamotoeita.github.io/shikenyou/nichiyobi/" class="btn btn--orange btn--cubic btn--shadow">日曜日</a>
-<input type="button" onclick="location.href='https://okamotoeita.github.io/shikenyou/getsuyobi/'" value="月曜日">
-<input type="button" onclick="location.href='https://okamotoeita.github.io/shikenyou/kayobi/'" value="火曜日">
-<input type="button" onclick="location.href='https://okamotoeita.github.io/shikenyou/suiyobi/'" value="水曜日">
-<input type="button" onclick="location.href='https://okamotoeita.github.io/shikenyou/mokuyobi/'" value="木曜日">
-<input type="button" onclick="location.href='https://okamotoeita.github.io/shikenyou/kinyobi/'" value="金曜日">
-<input type="button" onclick="location.href='https://okamotoeita.github.io/shikenyou/doyobi/'" value="土曜日">
-<input type="button" onclick="location.href='https://okamotoeita.github.io/shikenyou/nichiyobi/'" value="日曜日">
-<br><br><br>
+	<a href="https://okamotoeita.github.io/shikenyou/getsuyobi/" class="btn btn-flat"><span>月曜日</span></a>
+	<a href="https://okamotoeita.github.io/shikenyou/kayobi/" class="btn btn-flat"><span>火曜日</span></a>
+	<a href="https://okamotoeita.github.io/shikenyou/suiyobi/" class="btn btn-flat"><span>水曜日</span></a>
+	<a href="https://okamotoeita.github.io/shikenyou/mokuyobi/" class="btn btn-flat"><span>木曜日</span></a>
+	<a href="https://okamotoeita.github.io/shikenyou/kinyobi/" class="btn btn-flat"><span>金曜日</span></a>
+	<a href="https://okamotoeita.github.io/shikenyou/doyobi/" class="btn btn-flat"><span>土曜日</span></a>
+	<a href="https://okamotoeita.github.io/shikenyou/nichiyobi/" class="btn btn-flat"><span>日曜日</span></a>
+	<br><br><br>
 
 <label><a name="1">＜お知らせ＞</a><br>
 <p><font color="red">新着メッセージがあります。</front><font color="black"></p>
