@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<link rel="icon" type="image/x-icon" href="https://static.wixstatic.com/media/669165_89484848ada942a39a0db93ecdd66446~mv2.png/v1/fill/w_280,h_280,al_c,lg_1,q_85,enc_auto/669165_89484848ada942a39a0db93ecdd66446~mv2.png"><link rel="sympony" sizes="180x180" href="https://static.wixstatic.com/media/669165_89484848ada942a39a0db93ecdd66446~mv2.png/v1/fill/w_280,h_280,al_c,lg_1,q_85,enc_auto/669165_89484848ada942a39a0db93ecdd66446~mv2.png">
+  <meta charset="UTF-8">
+　<meta name="viewport" content="width=device-width, initial-scale=1.0">
+　<title>symphony今日の占い</title>
+<style>
+body{
+margin: 20px; 
+padding: 50px 10px 50px 10px; 
+}
+.Header {
+position: fixed; 
+top: 0; 
+left: 0; 
+width: 100%; 
+height: 40px; 
+padding: 10px; 
+background-color: #008DBD;
+color: #FFFFFF; 
+}
+.Contents {
+width: 100%; 
+overflow: auto; 
+}
+</style>
+</head>
+<body>
+
+<font face="sans-serif">
+<div class="Header">symphony</div>
+
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        #fortune-result {
+            font-size: 3rem;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s, transform 1s;
+        }
+
+        #fortune-result.show {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        #fortune-result.big-blink {
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        #start-btn {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #start-btn:hover {
+            background-color: #45a049;
+        }
+
+        #customization {
+            margin-top: 30px;
+        }
+
+        #customization label {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>今日の運勢を占ってみましょう！</h1>
+
+    <button id="start-btn">占い開始</button>
+
+    <div id="fortune-result"></div>
+
+
+
+    <script>
+        // 占い結果のリスト
+        let fortunes = ["大吉", "中吉", "小吉", "吉", "末吉", "凶"];
+
+        // HTML要素を取得
+        const resultElement = document.getElementById('fortune-result');
+        const startBtn = document.getElementById('start-btn');
+        const customFortuneInput = document.getElementById('custom-fortune');
+        const addFortuneBtn = document.getElementById('add-fortune');
+
+        // 占いを開始する関数
+        function startFortune() {
+            // 占い結果をランダムに選択
+            const randomIndex = Math.floor(Math.random() * fortunes.length);
+            const fortuneResult = fortunes[randomIndex];
+
+            // 結果を表示
+            resultElement.textContent = fortuneResult;
+
+            // アニメーション効果をリセット
+            resultElement.classList.remove('show', 'big-blink');
+
+            // 少し遅れて表示とアニメーションを適用
+            setTimeout(() => {
+                resultElement.classList.add('show');
+                // "大吉"の時だけ特別なアニメーションを追加
+                if (fortuneResult === "大吉") {
+                    resultElement.classList.add('big-blink');
+                }
+            }, 100);
+        }
+
+        // カスタム占い結果を追加する関数
+        function addCustomFortune() {
+            const customFortune = customFortuneInput.value.trim();
+            if (customFortune) {
+                fortunes.push(customFortune);
+                alert(`${customFortune} が追加されました！`);
+                customFortuneInput.value = '';  // 入力欄をクリア
+            } else {
+                alert("有効な結果を入力してください！");
+            }
+        }
+
+        // ボタンがクリックされたときに占い開始
+        startBtn.addEventListener('click', startFortune);
+    </script>
+
+</body>
+</html>
