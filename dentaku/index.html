@@ -3,116 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>電卓</title>
-<div id="humberger">
-</div>
-<style>
-body{
-margin: 20px; 
-padding: 50px 10px 50px 10px; 
-}
-.Header {
-position: fixed; 
-top: 0; 
-left: 0; 
-width: 100%; 
-height: 40px; 
-padding: 10px; 
-background-color: #008DBD;
-color: #FFFFFF; 
-}
-.Contents {
-width: 100%; 
-overflow: auto; 
-}
-</style>
+    <title>履歴付きシンプル電卓サイト</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        h1 {
+            margin-bottom: 20px;
+        }
 
-body {
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-}
+        nav ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
 
-.calculator {
-    width: 300px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
 
-#display {
-    width: 100%;
-    height: 50px;
-    text-align: right;
-    font-size: 24px;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+        nav ul li a {
+            text-decoration: none;
+            color: #007BFF;
+        }
 
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-}
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
 
-.btn {
-    width: 100%;
-    padding: 20px;
-    font-size: 18px;
-    background-color: #f2f2f2;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
+        .calculator {
+            margin: 0 auto;
+            width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-.btn:hover {
-    background-color: #ddd;
-}
+        #display {
+            width: 100%;
+            height: 50px;
+            text-align: right;
+            font-size: 24px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-#equals {
-    grid-column: span 4;
-    background-color: #4CAF50;
-    color: white;
-}
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
 
-#clear {
-    background-color: #ff6666;
-    color: white;
-}
+        .btn {
+            padding: 20px;
+            font-size: 18px;
+            background-color: #f2f2f2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
+        .btn:hover {
+            background-color: #ddd;
+        }
 
-    
-</style>
+        #equals {
+            grid-column: span 4;
+            background-color: #4CAF50;
+            color: white;
+        }
 
-    
+        #clear {
+            background-color: #ff6666;
+            color: white;
+        }
+
+        #history {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        #history h3 {
+            margin-bottom: 10px;
+        }
+
+        #history-list {
+            list-style-type: decimal;
+            padding-left: 40px;
+        }
+
+        #about {
+            margin-top: 40px;
+        }
+
+        #about p {
+            margin-bottom: 20px;
+        }
+
+        footer {
+            margin-top: 40px;
+        }
+    </style>
 </head>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>オリジナル電卓</title>
-
-    <link rel="icon" type="image/x-icon" href="https://static.wixstatic.com/media/669165_89484848ada942a39a0db93ecdd66446~mv2.png/v1/fill/w_280,h_280,al_c,lg_1,q_85,enc_auto/669165_89484848ada942a39a0db93ecdd66446~mv2.png"><link rel="sympony" sizes="180x180" href="https://static.wixstatic.com/media/669165_89484848ada942a39a0db93ecdd66446~mv2.png/v1/fill/w_280,h_280,al_c,lg_1,q_85,enc_auto/669165_89484848ada942a39a0db93ecdd66446~mv2.png">　
-</head>
-<h1><center>電卓</center></h1><br>
 <body>
-    <div class="calculator">
+    <h1>履歴付きシンプル電卓サイト</h1>
+    <nav>
+        <ul>
+            <li><a href="#calculator">電卓</a></li>
+            <li><a href="#about">説明</a></li>
+            <li><a href="https://okamotoeita.github.io/shikenyou/home/" target="_blank">元のサイトに戻る</a></li>
+        </ul>
+    </nav>
+
+    <!-- 電卓部分 -->
+    <section id="calculator" class="calculator">
         <input type="text" id="display" disabled>
         <div class="buttons">
             <button class="btn" data-value="7">7</button>
@@ -137,79 +154,76 @@ body {
             
             <button class="btn" id="equals">=</button>
         </div>
-    </div>
+        <div id="history">
+            <h3>計算履歴</h3>
+            <ul id="history-list"></ul>
+        </div>
+    </section>
 
+    <!-- 説明部分 -->
+    <section id="about">
+        <h2>このサイトについて</h2>
+        <p>このページでは、シンプルな電卓を使って基本的な計算を行うことができ、計算結果の履歴も確認できます。電卓は、四則演算（足し算、引き算、掛け算、割り算）に対応しています。</p>
+        <p>元のサイトに戻るためのリンクも用意しています。操作が完了したら、リンクをクリックして元のサイトに戻ってください。</p>
+    </section>
 
+    <script>
+        // ディスプレイの要素を取得
+        const display = document.getElementById('display');
+        let currentInput = ''; // 現在の入力を保持
+        let resultDisplayed = false; // 結果が表示されたかどうか
 
-<br>
-<br>
-<br>
+        // 履歴を表示する要素
+        const historyList = document.getElementById('history-list');
+        
+        // 全てのボタン要素を取得
+        const buttons = document.querySelectorAll('.btn');
 
-<script>
+        // 各ボタンにクリックイベントを設定
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const value = button.getAttribute('data-value');
 
-// ディスプレイの要素を取得
-const display = document.getElementById('display');
-let currentInput = ''; // 現在の入力を保持
-let resultDisplayed = false; // 結果が表示されたかどうか
+                // クリアボタンの場合
+                if (button.id === 'clear') {
+                    currentInput = '';
+                    display.value = '';
+                    resultDisplayed = false;
+                    return;
+                }
 
-// 全てのボタン要素を取得
-const buttons = document.querySelectorAll('.btn');
+                // イコールボタンの場合
+                if (button.id === 'equals') {
+                    try {
+                        const result = eval(currentInput); // 計算実行
+                        display.value = result;
+                        addHistory(currentInput + ' = ' + result); // 履歴に追加
+                        currentInput = result;
+                        resultDisplayed = true;
+                    } catch (e) {
+                        display.value = 'エラー';
+                    }
+                    return;
+                }
 
-// 各ボタンにクリックイベントを設定
-buttons.forEach(button => {
-    button.addEventListener('click', () => {
-        const value = button.getAttribute('data-value');
+                // もし計算結果が表示された後に新しい入力があればリセット
+                if (resultDisplayed) {
+                    currentInput = '';
+                    resultDisplayed = false;
+                }
 
-        // クリアボタンの場合
-        if (button.id === 'clear') {
-            currentInput = '';
-            display.value = '';
-            resultDisplayed = false;
-            return;
-        }
-
-        // イコールボタンの場合
-        if (button.id === 'equals') {
-            try {
-                currentInput = eval(currentInput); // 計算実行
+                // 入力をディスプレイに表示
+                currentInput += value;
                 display.value = currentInput;
-                resultDisplayed = true;
-            } catch (e) {
-                display.value = 'エラー';
-            }
-            return;
+            });
+        });
+
+        // 計算履歴を追加する関数
+        function addHistory(entry) {
+            const li = document.createElement('li');
+            li.textContent = entry;
+            historyList.appendChild(li);
         }
-
-        // もし計算結果が表示された後に新しい入力があればリセット
-        if (resultDisplayed) {
-            currentInput = '';
-            resultDisplayed = false;
-        }
-
-        // 入力をディスプレイに表示
-        currentInput += value;
-        display.value = currentInput;
-    });
-});
-
-
-
-</script>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<a href="https://okamotoeita.github.io/shikenyou/home/">元のサイトに戻る。</a>
-
-
+    </script>
 </body>
 </html>
