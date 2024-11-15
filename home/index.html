@@ -158,7 +158,19 @@ footer {
   background-color: #abbaba;
   color: #000;
 }
+/* フェードインするテキストのスタイル */
+  .fade-in-text {
+    font-size: 2em;
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+  }
 
+  /* フェードインアニメーション */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+	
 </style>
 </head>
 <body>
@@ -166,13 +178,13 @@ footer {
 
 <font face="sans-serif">
 <div class="Header">symphony</div>
-<div class="Contents">
+<div class="Contents"></div>
 
 
 </head>
 <p> </p>
 <br><br><br>
-<h1>symphony公式サイトへようこそ</h1>
+ <h3><div class="fade-in-text">symphony公式サイトへようこそ</h3></div>
 
   <h3>今日は、<span id="text"></span>です。</h3>
 
