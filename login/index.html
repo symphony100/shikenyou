@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ユーザー認証</title>
+  <style>
+    /* 全体のデザイン */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(145deg, #6e7dff, #48c6ef);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    /* ログインフォームのスタイル */
+    .login-container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      padding: 40px 50px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* 入力フィールドのデザイン */
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 15px 0;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border 0.3s ease-in-out;
+    }
+
+    input:focus {
+      border-color: #6e7dff;
+      outline: none;
+    }
+
+    /* ボタンのデザイン */
+    button {
+      width: 100%;
+      padding: 15px;
+      background-color: #6e7dff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #5a6cdd;
+      transform: scale(1.05);
+    }
+
+    /* エラーメッセージのスタイル */
+    #error-message {
+      color: #ff4d4d;
+      display: none;
+      margin-top: 15px;
+      font-size: 1rem;
+    }
+
+    /* フォーム内の余白を調整 */
+    .login-container input,
+    .login-container button {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>ログイン</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="ユーザー名" required>
+      <input type="password" id="password" placeholder="パスワード" required>
+      <button type="submit">ログイン</button>
+    </form>
+    <p id="error-message">ユーザー名またはパスワードが間違っています。</p>
+  </div>
+
+  <script>
+    // ユーザー情報（ユーザー名とパスワード）
+    const users = [
+      { username: "sy1268", password: "315178", site: "https://example1.com" },
+      { username: "sy1315", password: "133615", site: "https://example2.com" },
+      { username: "sy2136", password: "240118", site: "https://example3.com" },
+      { username: "kr2000", password: "090511", site: "https://example4.com" }
+    ];
+
+    // ログインフォームの送信イベント
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();  // フォームのデフォルト動作を停止
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      // ユーザー認証
+      const user = users.find(u => u.username === username && u.password === password);
+
+      // 結果に応じて処理
+      if (user) {
+        window.location.href = user.site;  // 認証成功なら指定されたサイトへリダイレクト
+      } else {
+        document.getElementById("error-message").style.display = "block";  // エラーメッセージ表示
+      }
+    });
+  </script>
+
+</body>
+</html>
