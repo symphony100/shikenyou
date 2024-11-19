@@ -11,27 +11,48 @@ ul {
   display: flex;
   text-align: center;
 }
-	
-<!-- ヘッダーは、変えないこと。 -->
-body{
-margin: 20px; 
-padding: 50px 10px 50px 10px; 
-}
-.Header {
-position: fixed; 
-top: 0; 
-left: 0; 
-width: 100%; 
-height: 40px; 
-padding: 10px; 
-background-color: #008DBD;
-color: #FFFFFF; 
-}
-.Contents {
-width: 100%; 
-overflow: auto; 
-}
+body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
+        /* ヘッダー全体のスタイル */
+header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #008DBD;
+          /* ヘッダー背景 */
+            color: white;
+        }
+
+        /* 左側のロゴやタイトル */
+.logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* リンクボタンのコンテナ */
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* ボタンのスタイル */
+        .nav-buttons a {
+            text-decoration: none;
+            color: white;
+            background-color: #9ACD32;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #1769aa;
+	}
+	
 /* アイコン */
 
     /* グリッドコンテナ設定 */
@@ -174,15 +195,14 @@ footer {
 </style>
 </head>
 <body>
+    <header>
+        <div class="logo">サイトロゴ</div>
+        <div class="nav-buttons">
+            <a href="https://okamotoeita.github.io/shikenyou/login/">ログイン</a>
+        </div>
+    </header>
 
 
-<font face="sans-serif">
-<div class="Header">symphony</div>
-<div class="Contents"></div>
-
-
-</head>
-<p> </p>
 <br><br><br>
  <h3><div class="fade-in-text">symphony公式サイトへようこそ</h3></div>
 
