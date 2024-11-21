@@ -184,12 +184,59 @@ html{
 
 /* フッター */
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #abbaba;
-  color: #000;
-}
+        /* 基本スタイル */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* フッターのスタイル */
+        footer {
+            background-color: #abbaba;
+            color: #000000;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #050505;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* スマートフォン対応 */
+        @media (max-width: 600px) {
+            footer {
+                padding: 15px;
+                font-size: 14px;
+            }
+            footer a {
+                margin: 0 5px;
+            }
+        }
+
+        /* タブレット対応 */
+        @media (min-width: 601px) and (max-width: 1024px) {
+            footer {
+                padding: 20px;
+                font-size: 16px;
+            }
+            footer a {
+                margin: 0 8px;
+            }
+        }
+	
 /* フェードインするテキストのスタイル */
   .fade-in-text {
     font-size: 2em;
@@ -417,13 +464,13 @@ function getNow() {
 <br>
 <br>
 
-  <footer>
-    <small>
-      <!-- 更新時、必ずバージョンを変えること。 -->
-      このサイトは、2024/09/02にこのサイトが作成されました。無断転載を禁じます。<a href="https://okamotoeita.github.io/shikenyou/riyoukiyaku/">利用規約</a>
-      ver 6.0
-    </small>
-  </footer>
+    <footer>
+        <p>このサイトは、2024/09/02に作成されました。</p>
+        <p>
+            <a href="https://okamotoeita.github.io/shikenyou/riyoukiyaku/">利用規約</a> |
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe31JEKqMBzYr5WE_lbGZhVCwrAEVIMtKmF1EdAB5pWVr1O_g/viewform">お問い合わせ</a>
+        </p>
+    </footer>
 
 <a href="#top" id="topButton">⇧</a>
 </font>
