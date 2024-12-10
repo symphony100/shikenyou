@@ -6,7 +6,42 @@
 　<meta name="viewport" content="width=device-width, initial-scale=1.0">
 　<title>symphony</title>
 <style>
+        /* 削除予定ポップアップのスタイル */
+        .popup {
+            display: none; /* 初期状態で非表示 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
 
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            width: 300px;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+
+	
 ul {
   display: flex;
   text-align: center;
@@ -258,7 +293,45 @@ html{
         <div class="nav-buttons">
         </div>
     </header>
+    <!-- ポップアップ -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" id="close-btn">✕</span>
+            <p><b><u>＜　重要なお知らせ　＞</b></u><br>
+              本日も、symphony公式サイトをご利用くださいましてありがとうございます。<br>
+              アドレスが、「okamotoeita.github.io」というアドレス名となり、個人情報漏洩の可能性があるため、「symphony100.github.io」に変更することが決定いたしました。皆様のご理解とご協力をお願い致します。<br>
+              symphony合同会社一同
+            </p>
+            <button id="hide-btn">次回から表示しない</button>
+        </div>
+    </div>
 
+    <script>
+        // ポップアップ要素の取得
+        const popup = document.getElementById('popup');
+        const closeBtn = document.getElementById('close-btn');
+        const hideBtn = document.getElementById('hide-btn');
+
+        // ページを開いたときの処理
+        window.onload = () => {
+            // ローカルストレージに「hidePopup」の設定がない場合のみポップアップを表示
+            if (!localStorage.getItem('hidePopup')) {
+                popup.style.display = 'flex';
+            }
+        };
+
+        // ✕ボタンでポップアップを閉じる
+        closeBtn.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // 「表示しない」ボタンをクリックした場合の処理
+        hideBtn.addEventListener('click', () => {
+            popup.style.display = 'none';
+            // ローカルストレージに「表示しない」設定を保存
+            localStorage.setItem('hidePopup', 'true');
+        });
+    </script>
 
 <br>
  <h3><div class="fade-in-text">symphony公式サイトへようこそ</h3></div>
