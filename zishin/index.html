@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<title>symphony</title>
+<head>
+    <meta charset="UTF-8">  
+  <style>
+  /* ヘッダー全体のスタイル */
+body{
+margin: 20px; 
+padding: 50px 10px 50px 10px; 
+}
+.Header {
+position: fixed; 
+top: 0; 
+left: 0; 
+width: 100%; 
+height: 40px; 
+padding: 10px; 
+background-color: #008DBD;
+color: #FFFFFF; 
+}
+.Contents {
+width: 100%; 
+overflow: auto; 
+} 
+  </style>
+     <header>
+        <div class="Header">symphony</div>
+        <div class="nav-buttons">
+        </div>
+    </header>
+<!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-MCNRXDX');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VMGPZ534W"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5VMGPZ534W');
+</script>
+    <!--Googleアナリティクス-->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-82101647-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<script>
+
+
+
+
+getJisin();
+
+async function getJisin(){
+
+	var i = 0;
+
+
+for(i=0;i < 10;i++){
+const xhr = new XMLHttpRequest();
+xhr.open("GET", "https://www.jma.go.jp/bosai/quake/data/list.json");
+xhr.send();
+xhr.responseType = "json";
+xhr.onload = () => {
+  if (xhr.readyState == 4 && xhr.status == 200) {
+    const jisindata = xhr.response;
+    var jisinJsonString = JSON.stringify(jisindata);
+    var objData  = JSON.parse(jisinJsonString);
+
+    var jisinData = objData.find( ({ ttl }) => ttl == "震源・震度情報" );
+    
+    console.log(jisinData);
+        
+    
+    //発生時刻
+    var target_datetime  = new Date(jisinData.at);
+    
+    var jiainTime = Intl.DateTimeFormat(undefined, {
+	  hour12: false,
+	  year: 'numeric',
+	  month: '2-digit',
+	  day: '2-digit',
+	  hour: '2-digit',
+	  minute: '2-digit'
+	}).format(target_datetime);
+
+
+
+    //マグニチュード
+    var magnitude = jisinData.mag;
+
+
+    //震源地
+    var shingenName = jisinData.anm;
+
+    var bodyCss = '';
+
+    //震度
+    var maxScale = jisinData.maxi;
+    var maxSingen = 0;
+    if(maxScale === "1"){
+    	maxSingen = "１";
+	bodyCss = 'background-color: white;';
+    } else if(maxScale === "2"){
+    	maxSingen = "２";
+	bodyCss = 'background-color: white;';
+    } else if(maxScale === "3"){
+    	maxSingen = "３";
+	bodyCss = 'background-color: black;';
+    } else if(maxScale === "4"){
+    	maxSingen = "４";
+	bodyCss = 'background-color: black;';
+    } else if(maxScale === "5-"){
+    	maxSingen = "５弱";
+	bodyCss = 'background-color: red;';
+    } else if(maxScale === "5+"){
+    	maxSingen = "５強";
+	bodyCss = 'background-color: red;';
+    } else if(maxScale === "6-"){
+    	maxSingen = "６弱";
+	bodyCss = 'background-color: red;';
+    } else if(maxScale === "6+"){
+    	maxSingen = "６強";
+	bodyCss = 'background-color: red;';
+    } else if(maxScale === "7"){
+    	maxSingen = "７";
+	bodyCss = 'background-color: red;';
+    } else {
+    	maxSingen = "??";
+	bodyCss = 'background-color: black;';
+    }
+
+
+    var body = document.getElementById("body");
+    body.setAttribute('style',bodyCss);
+
+
+    console.log("マグニチュード: " + magnitude  + "\n"  + "震源地: " + shingenName + "\n" + "発生時刻: " + jiainTime + "\n" + "最大震度: " + maxSingen + "\n");
+
+
+    document.getElementById("shindo").innerHTML = maxSingen;
+    document.getElementById("magnitude").innerHTML = magnitude;
+    document.getElementById("shingenName").innerHTML = shingenName;
+    document.getElementById("jiainTime").innerHTML = jiainTime;
+
+
+
+
+    // alert("マグニチュード: " + magnitude + "\n"   + "震源地: " + shingenName + "\n" + "発生時刻: " + jiainTime + "\n" + "最大震度: " + maxSingen + "\n");
+        
+    
+  } else {
+    console.log(`地震情報取得エラー: ${xhr.status}`);
+  }
+};
+
+
+
+await wait2();
+
+		if(i == 9){
+			i = -1;
+		}
+
+
+}
+
+
+}
+
+
+
+function wait2 () {
+    return new Promise( resolve => { setTimeout( resolve, 1000 ) } );
+}
+
+
+
+</script>
+
+</head>
+<body>
+
+            <div  id="body">
+              <span span style="color:black; font-size: 30px;" face="sans-serif" size="1">
+              <style="display: inline"></style>
+              </span><br>
+              <span style="color:black; font-size: 30px;" face="sans-serif" size="1">地震情報
+              </span>
+              <span style="color:black; font-size: 30px;" face="sans-serif" size="1">リアルタイム
+              </span>
+              <br>
+
+              <span span style="color:black; font-size: 30px;" face="sans-serif" size="1">
+              </span><br>
+
+              <span span style="color:black; font-size: 30px;" face="sans-serif" size="1">
+              <style="display: inline">最大震度: <span id="shindo"></span></style>
+              </span><br>
+              <span span style="color:black; font-size: 30px;" face="sans-serif" size="1">
+              <style="display: inline">マグニチュード: <span id="magnitude"></span></style>
+              </span><br>
+              <span span style="color:black; font-size: 30px;" face="sans-serif" size="1">
+              <style="display: inline">震源地: <span id="shingenName"></span></style>
+              </span><br>
+              <span span style="color:black; font-size: 30px;" face="sans-serif" size="1">
+              <style="display: inline">発生日時: <span id="jiainTime"></span></style>
+              </span><br>
+              <span span style="color:black; font-size: 30px;" face="sans-serif" size="1">
+              <style="display: inline"></style>
+              </span><br>
+              <span span style="color:black; font-size: 30px;" face="sans-serif" size="1">
+              <style="display: inline"></style>
+              </span><br>
+              <span span style="color:black; font-size: 30px;" face="sans-serif" size="1">
+              </span><br>
+              <span span style="color:black; font-size: 30px;" face="sans-serif" size="1">
+              <style="display: inline"></style>
+              </span><br>
+              <span span style="color:black; font-size: 30px;" face="sans-serif" size="1">
+              <style="display: inline"></style>
+              </span><br>
+            </div>
+		<br>
+ <a href="https://symphony100.github.io/shikenyou/">元のサイトに戻る。</a>
+</body>
+</html>
