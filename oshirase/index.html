@@ -65,7 +65,7 @@ let lastKnownHash = ""; // 前回確認したハッシュ値を保存
 
 // サイトの変更をチェックする関数
 function checkForUpdates() {
-  fetch('check_update.php') // PHPスクリプトにリクエスト
+  fetch('https://symphony100.github.io/shikenyou/oshirase/check_update.php') // PHPスクリプトにリクエスト
     .then(response => response.json())
     .then(data => {
       if (lastKnownHash && data.contentHash !== lastKnownHash) {
