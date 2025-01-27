@@ -66,7 +66,7 @@ let lastCheckedTime = 0; // 初期値（最終確認時間）
 
 // 定期的にサーバーに更新状況を確認
 setInterval(() => {
-  fetch('check_update.php')
+  fetch('https://symphony100.github.io/shikenyou/oshirase/check_update.php')
     .then(response => response.json())
     .then(data => {
       if (data.lastUpdate > lastCheckedTime) {
