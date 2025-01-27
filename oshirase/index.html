@@ -30,7 +30,6 @@ overflow: auto;
 <font face="sans-serif">
 <div class="Header">symphony</div>
 <div class="Contents">
-</head>
 <h1>お知らせ</h1><br>
 <a href="https://symphony100.github.io/shikenyou/">元のサイトに戻る。</a><br>
 <p>2025/01/08「symtem」から「SSG」に名称変更しました。 </p>
@@ -58,9 +57,26 @@ overflow: auto;
 <p>2024/09/24 オーディオプレーヤーを廃止しました。</p>
 <p>2024/09/23 Google mapを廃止しました。</p>
 <p>2024/09/02 試験用ウェブサイトを公開しました。</p>
+</div>
 <br>
 <br>
 <br>
+<script>
+let lastCheckedTime = 0; // 初期値（最終確認時間）
+
+// 定期的にサーバーに更新状況を確認
+setInterval(() => {
+  fetch('check_update.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.lastUpdate > lastCheckedTime) {
+        lastCheckedTime = data.lastUpdate;
+        alert('ページが更新されました！最新情報を確認してください。');
+      }
+    })
+    .catch(error => console.error('更新確認中にエラーが発生しました:', error));
+}, 5000); // 5秒ごとにチェック
+</script>
 </font>
 </body>
 </html>
