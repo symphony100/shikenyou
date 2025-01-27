@@ -60,23 +60,27 @@ overflow: auto;
 </div>
 <br>
 <br>
-<br>
-<script>
-let lastCheckedTime = 0; // 初期値（最終確認時間）
+<br><script>
+let lastKnownHash = ""; // 前回確認したハッシュ値を保存
 
-// 定期的にサーバーに更新状況を確認
-setInterval(() => {
-  fetch('https://symphony100.github.io/shikenyou/oshirase/check_update.php')
+// サイトの変更をチェックする関数
+function checkForUpdates() {
+  fetch('check_update.php') // PHPスクリプトにリクエスト
     .then(response => response.json())
     .then(data => {
-      if (data.lastUpdate > lastCheckedTime) {
-        lastCheckedTime = data.lastUpdate;
+      if (lastKnownHash && data.contentHash !== lastKnownHash) {
+        // ハッシュ値が異なる場合、内容が変更されたと判断
         alert('新しいお知らせがあります。');
       }
+      lastKnownHash = data.contentHash; // ハッシュ値を更新
     })
     .catch(error => console.error('更新確認中にエラーが発生しました:', error));
-}, 5000); // 5秒ごとにチェック
+}
+
+// 5秒ごとに更新を確認
+setInterval(checkForUpdates, 5000);
 </script>
+
 </font>
 </body>
 </html>
