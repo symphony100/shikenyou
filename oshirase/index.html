@@ -71,7 +71,7 @@ setInterval(() => {
     .then(data => {
       if (data.lastUpdate > lastCheckedTime) {
         lastCheckedTime = data.lastUpdate;
-        alert('ページが更新されました！最新情報を確認してください。');
+        alert('新しいお知らせがあります。');
       }
     })
     .catch(error => console.error('更新確認中にエラーが発生しました:', error));
