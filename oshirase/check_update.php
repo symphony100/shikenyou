@@ -1,7 +1,13 @@
 <?php
-// ファイルの最終更新日時を取得
-$lastUpdate = filemtime("https://symphony100.github.io/shikenyou/oshirase/index.html");
+// 監視するHTMLファイル（またはデータベースのデータ）
+$filePath = "path_to_your_html_file.html";
+
+// ファイルの内容を読み込み、ハッシュを生成
+$contentHash = hash_file('sha256', $filePath);
 
 // JSON形式で返す
-echo json_encode(['lastUpdate' => $lastUpdate]);
+echo json_encode([
+    'contentHash' => $contentHash, // 現在のハッシュ
+    'lastUpdate' => filemtime($filePath) // ファイルの最終更新日時
+]);
 ?>
