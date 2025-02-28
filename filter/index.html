@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>symphony</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f8f9fa;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #202124;
+            font-weight: 500;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            width: 300px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-container input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            padding: 8px;
+        }
+
+        .input-container:focus-within {
+            border-color: #1a73e8;
+            box-shadow: 0px 0px 4px rgba(26, 115, 232, 0.3);
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #1a73e8;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #1765cc;
+        }
+
+        /* ローディング画面 */
+        .loading-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #1a73e8;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        document.addEventListener("keydown", function (e) {
+            if (e.ctrlKey && (e.key === "u" || e.key === "U" || e.key === "i" || e.key === "I")) {
+                e.preventDefault();
+            }
+            if (e.key === "F12") {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+
+        function checkAccess() {
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+            const loadingScreen = document.getElementById("loading-screen");
+            const correctPassword = "20240902"; // ここを好きなパスワードに変更
+
+            if (password !== correctPassword) {
+                errorMessage.style.display = "block";
+                return;
+            } else {
+                errorMessage.style.display = "none";
+            }
+
+            const now = new Date();
+            const day = now.getDay();  
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+
+            let canAccess = false;
+
+            if (day >= 1 && day <= 5) { 
+                if ((hour === 8 && minute >= 0) || (hour > 8 && hour < 15) || (hour === 15 && minute < 30)) {
+                    canAccess = true;
+                }
+            } else if (day === 6) { 
+                if ((hour === 8 && minute >= 0) || (hour > 8 && hour < 13)) {
+                    canAccess = true;
+                }
+            }
+
+            if (canAccess) {
+                loadingScreen.style.display = "flex"; // ローディング画面を表示
+                setTimeout(() => {
+                    window.location.href = "https://symphony100.github.io/game"; 
+                }, 3000); // 5秒後にページ遷移
+            } else {
+                alert("この時間帯はアクセスできません");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("password").addEventListener("keypress", function (e) {
+                if (e.key === "Enter") {
+                    checkAccess();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+  
+    <img src="https://static.wixstatic.com/media/669165_89484848ada942a39a0db93ecdd66446~mv2.png/v1/fill/w_280,h_280,al_c,lg_1,q_85,enc_auto/669165_89484848ada942a39a0db93ecdd66446~mv2.png" alt="" width="50" height="50">
+<h1>symphony</h1>
+
+    <p>只今の時間、「symphonygame」はアクセスできません。<br>
+        パスワードを入力しない限り、アクセスできません。<br><br>
+    </p>
+    <div class="input-container">
+        <input type="password" id="password" placeholder="パスワードを入力">
+    </div>
+    <span id="error-message" class="error-message">パスワードが違います。</span>
+    <button onclick="checkAccess()">決定</button>
+
+    <!-- ローディング画面 -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+</body>
+</html>
