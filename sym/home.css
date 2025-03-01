@@ -218,13 +218,6 @@ html{
                 margin: 0 8px;
             }
         }
-	
-/* フェードインするテキストのスタイル */
-  .fade-in-text {
-    font-size: 2em;
-    opacity: 0;
-    animation: fadeIn 4s ease-in-out forwards;
-  }
 
   /* フェードインアニメーション */
   @keyframes fadeIn {
