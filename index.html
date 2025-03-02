@@ -17,6 +17,52 @@
         </div>
     </header>
 <br>
+
+
+
+	
+    <!-- ポップアップ -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" id="close-btn">✕</span>
+            <p><b><u>＜　重要なお知らせ　＞</b></u><br>
+              本日も、SSG公式サイトをご利用くださいましてありがとうございます。<br>
+              当ホームページをリニューアルすることに決定いたしました。<br>
+	      皆様には、ご迷惑をおかけいたしましてお詫び申し上げます。
+              symphony system group一同
+            </p>
+            <button id="hide-btn">次回から表示しない</button>
+        </div>
+    </div>
+
+    <script>
+        // ポップアップ要素の取得
+        const popup = document.getElementById('popup');
+        const closeBtn = document.getElementById('close-btn');
+        const hideBtn = document.getElementById('hide-btn');
+
+        // ページを開いたときの処理
+        window.onload = () => {
+            // ローカルストレージに「hidePopup」の設定がない場合のみポップアップを表示
+            if (!localStorage.getItem('hidePopup')) {
+                popup.style.display = 'flex';
+            }
+        };
+
+        // ✕ボタンでポップアップを閉じる
+        closeBtn.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // 「表示しない」ボタンをクリックした場合の処理
+        hideBtn.addEventListener('click', () => {
+            popup.style.display = 'none';
+            // ローカルストレージに「表示しない」設定を保存
+            localStorage.setItem('hidePopup', 'true');
+        });
+    </script>
+
+	
  <h1>SSG公式サイトへようこそ</h1>
 
   <h3>今日は、<span id="text"></span>です。</h3>
