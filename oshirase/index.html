@@ -5,6 +5,15 @@
 　<meta charset="UTF-8">
 　<meta name="viewport" content="width=device-width, initial-scale=1.0">
 　<title>symphonyお知らせ</title>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "c6389fa6-e7e3-4ed8-b7bd-72b51ed3fb50",
+    });
+  });
+</script>
 <style>
 body{
 margin: 20px; 
